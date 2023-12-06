@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Vary: Scaling up the Vision Vocabulary for Large Vision-Language Models</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600' rel='stylesheet'
+        type='text/css'>
+    <link rel="stylesheet" href="./assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.jpg">
+    <link rel="icon" type="image/jpg" sizes="32x32" href="logo.jpg">
+    <link rel="icon" type="image/jpg" sizes="16x16" href="logo.jpg">
+    <link rel="manifest" href="./site.webmanifest">
+
+    <meta property="og:site_name" content="Vary: Scaling up the Vision Vocabulary for Large Vision-Language Models" />
+    <meta property="og:type" content="video.other" />
+    <meta property="og:title" content="Vary: Scaling up the Vision Vocabulary for Large Vision-Language Models" />
+    <meta property="og:description" content="Vary: Scaling up the Vision Vocabulary for Large Vision-Language Models, 2023." />
+    <meta property="og:url" content="https://varybase.github.io/" />
+
+    <meta property="article:publisher" content="https://varybase.github.io/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vary: Scaling up the Vision Vocabulary for Large Vision-Language Models" />
+    <meta name="twitter:url" content="https://varybase.github.io/" />
+
+    <style>
+        .user-icon {
+            background-image: url('./assets/images/icon/user.jpg');
+            background-size: 30px 30px;
+            /* Adjust the size as needed */
+            width: 30px;
+            height: 30px;
+            background-repeat: no-repeat;
+            margin-right: 10px;
+            margin-top: 10px;
+            float: right;
+        }
+
+        .bot-icon {
+            background-image: url('./assets/images/icon/bot.jpg');
+            background-size: 30px 30px;
+            /* Adjust the size as needed */
+            width: 30px;
+            height: 30px;
+            background-repeat: no-repeat;
+            margin-left: 10px;
+            margin-top: 10px;
+            float: left;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="highlight-clean" style="padding-bottom: 10px;">
+        <div class="container" style="max-width: 85%;">
+            <h1 class="text-center"><b>Vary</b>: Scaling up the Vision Vocabulary for</h1>
+            <h1 class="text-center">Large Vision-Language Models</h1>
+        </div>
+        <div class="container" style="max-width: 980px; margin-bottom: 20px;">
+            <div class="row authors">
+                <div class="col">
+                    <h5 class="text-center"><a class="text-center" href="https://runpeidong.com/">aaaa
+                            AAAA<sup>1</sup> </a></h5>
+                </div>
+                <div class="col">
+                    <h5 class="text-center"><a href="">bbbb BBBB<sup>2</sup></a></h5>
+                </div>
+                <div class="col">
+                    <h5 class="text-center"><a class="text-center" href="https://yuangpeng.com/">cccc
+                            CCCCC<sup>3</sup></a></h5>
+                </div>
+                <div class="col">
+                    <h5 class="text-center"><a class="text-center" href="https://qizekun.github.io/">dddd
+                            DDDD<sup>1</sup></a></h5>
+                </div>
+                <div class="col">
+                    <h5 class="text-center"><a class="text-center" href="https://joker316701882.github.io/">eeee
+                            EEEE<sup>2</sup></a></h5>
+                </div>
+                <div class="col">
+                    <h5 class="text-center"><a class="text-center" href="https://yancie-yjr.github.io/">ffff
+                            FFFF<sup>4</sup></a></h5>
+                </div>
+            </div>
+            <div class="row authors">
+                <div class="col">
+                    <h5 class="text-center"><a class="text-center" href="">hhhh HHHH<sup>2</sup></a></h5>
+                </div>
+                <div class="col">
+                    <h5 class="text-center"><a class="text-center"
+                            href="https://scholar.google.com/citations?user=MVZrGkYAAAAJ&hl=en">iiii
+                            IIII<sup>2</sup></a></h5>
+                </div>
+                <div class="col">
+                    <h5 class="text-center"><a class="text-center"
+                            href="https://scholar.google.com/citations?user=i1PB3cEAAAAJ&hl=en">jjjj
+                            JJJJ<sup>2</sup></a></h5>
+                </div>
+                <div class="col">
+                    <h5 class="text-center"><a class="text-center"
+                            href="https://scholar.google.com/citations?user=J4naK0MAAAAJ&hl=en">KKKK
+                            kkkk<sup>2</sup></a></h5>
+                </div>
+            </div>
+            <div class="row authors">
+                <div class="col">
+                    <h5 class="text-center"><a class="text-center"
+                            href="https://scholar.google.com/citations?user=yuB-cfoAAAAJ&hl=en">Xiangyu
+                            Zhang<sup>2</sup></a></h5>
+                </div>
+                <div class="col">
+                    <h5 class="text-center"><a class="text-center"
+                            href="http://group.iiis.tsinghua.edu.cn/~maks/leader.html">Kaisheng Ma<sup>3</sup></a></h5>
+                </div>
+                <div class="col">
+                    <h5 class="text-center"><a class="text-center" href="https://ericyi.github.io/">Li
+                            Yi<sup>3</sup></a></h5>
+                </div>
+            </div>
+            <div class="row affiliations">
+                <div class="col">
+                    <h6 class="text-center"><a class="text-center"><sup>2</sup>MEGVII Technology</a></h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons" style="margin-bottom: 8px;">
+            <a class="btn btn-light" role="button" href="https://arxiv.org/abs/2309.11499">
+                <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M16 0H8C6.9 0 6 .9 6 2V18C6 19.1 6.9 20 8 20H20C21.1 20 22 19.1 22 18V6L16 0M20 18H8V2H15V7H20V18M4 4V22H20V24H4C2.9 24 2 23.1 2 22V4H4M10 10V12H18V10H10M10 14V16H15V14H10Z">
+                    </path>
+                </svg>Paper
+            </a>
+            <a class="btn btn-light disabled border border-dark" aria-disabled="true" role="button" href="#">
+                <svg style="visibility:hidden;width:0px;height:24px;margin-left:-12px;margin-right:12px" width="0px"
+                    height="24px" viewBox="0 0 375 531">
+                    <polygon stroke="#000000" points="0.5,0.866 459.5,265.87 0.5,530.874 " />
+                </svg>
+                Project
+            </a>
+            <a class="btn btn-light" role="button" href="https://github.com/RunpeiDong/DreamLLM">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 24 24">
+                    <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729
+                            1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322
+                            3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823
+                            2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">
+                    </path>
+                </svg>
+                Code
+            </a>
+        </div>
+
+    </div>
+    <hr class="divider" />
+
+    <div class="container" style="max-width: 80%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Abstract</h2>
+                <p>
+                    <!-- <strong> -->
+                    This paper presents Vary, an efficient and effective method to scale up the Vision vocabulary of LVLMs. 
+                    The procedures of Vary is naturally divided into two-folds: the generation and integration of a new vision 
+                    vocabulary. In the first phase, we devise a "vocabulary network" along with a tiny decoder-only 
+                    transformer to produce the desired vocabulary via autoregression. In the next, we scale up the vanilla 
+                    vision vocabulary by merging the new one with the original one (CLIP), enabling the LVLMs can quickly 
+                    garner new features. Compared to the popular BLIP-2, MiniGPT4, and LLaVA, Vary can maintain their universal 
+                    capabilities while significantly improving the fine-grained perception and understanding ability.
+                    <!-- </strong> -->
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="max-width: 80%; mix-blend-mode: darken;">
+        <div class="row captioned_videos">
+            <div class="col-md-12">
+                <!-- Large format devices -->
+                <video class="video lazy d-none d-xs-none d-sm-block" autoplay loop playsinline muted>
+                    <source data-src="assets/images/vary.mp4" type="video/mp4">
+                    </source>
+                </video>
+                <!-- Small format devices -->
+                <video class="video lazy d-xs-block d-sm-none" autoplay loop playsinline muted>
+                    <source data-src="assets/images/vary.mp4" type="video/mp4">
+                    </source>
+                </video>
+            </div>
+        </div>
+    </div>
+    <hr class="divider" />
+
+
+    <div class="container" style="max-width: 80%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Multimodal dialogue examples</h2>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="conversation-button" onclick="toggleConversation(1)">Chinese Markdown</button>
+            <button class="conversation-button" onclick="toggleConversation(2)">English Markdown</button>
+            <button class="conversation-button" onclick="toggleConversation(3)">Chinese OCR</button>
+            <button class="conversation-button" onclick="toggleConversation(4)">English OCR</button>
+            <button class="conversation-button" onclick="toggleConversation(5)">Chart</button>
+            <button class="conversation-button" onclick="toggleConversation(6)">QA</button>
+        </div>
+        <br>
+
+        <div class="chat-container">
+
+            <div id="conversation1" class="chat-messages">
+
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <!-- <img class="image-message" src="assets/images/conversions/29_17.jpg" width="800px"> -->
+                    <img src="assets/images/conversions/markdown_ch_1.png" width="600px">
+                </div>
+                
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <div class="message user-message">
+                        <div class="message-text">将这幅图片转成markdown格式</div>
+                    </div>
+                </div>
+
+
+
+                <div class="bot-message-container">
+                    <div class="bot-icon"></div>
+                    <div class="message bot-message">
+                        <div class="message-text">以上引理表明: 复数相乘时, 模相乘, 辐角相加; 复数相除时, 模相 除, 辐角相减. 引理的证明留给读者.
+                            <br>另一方面, 在微积分中对函数 \(e^{x}, \sin x\) 和 \(\cos x\), 我们有下面的幂级 数展开式:
+                            <br>\\[
+                            <br>\begin{aligned}
+                            <br>& e^{x}=1+\frac{x}{1 !}+\frac{x^{2}}{2 !}+\cdots+\frac{x^{n}}{n !}+\cdots, \\
+                            <br>& \sin x=-x-\frac{x^{3}}{3 !}+\frac{x^{5}}{5 !}+\cdots+(-1)^{n} \frac{x^{2 n+1}}{(2 n+1) !}+\cdots, \\
+                            <br>& \cos x=1-\frac{x^{2}}{2 !}+\frac{x^{4}}{4 !}+\cdots+(-1)^{n} \frac{x^{2 n}}{(2 n) !}+\cdots,
+                            <br>\end{aligned}
+                            <br>\\]
+                            <br>其中 \(x \in \mathbb{R}\).
+                            <br>如果形式地令
+                            <br>\\[
+                            <br>e^{i x}=1+\frac{i x}{1 !}+\frac{(i x)^{2}}{2 !}+\cdots+\frac{(i x)^{n}}{n !}+\cdots,
+                            <br>\\]
+                            <br>并将 \(i^{2}=-1\) 代入, 则我们得到
+                            <br>\\[
+                            <br>e^{i x}=\cos x+i \sin x .
+                            <br>\\]
+                            <br>这一公式称为 Euler 公式. Euler 公式的严格定义和证明将在下一节中 给出.
+                            <br>利用 Euler 公式, 复数 \(z=r(\cos \theta+i \sin \theta)\) 可表为
+                            <br>\\[
+                            <br>z=r \mathrm{e}^{\mathrm{i} \theta} .
+                            <br>\\]
+                            <br>复数的这种表示称为复数的指数形式.
+                            <br>设
+                            <br>\\[
+                            <br>z_{1}=r_{1} \mathrm{e}^{\mathrm{i} \theta_{1}}, \quad z_{2}=r_{2} \mathrm{e}^{\mathrm{i} \theta_{2}},
+                            <br>\\]
+                            <br>则与通常指数函数的运算相同, 我们有
+                            <br>\\[
+                            <br>z_{1} z_{2}=r_{1} r_{2} \mathrm{e}^{\mathrm{i}\left(\theta_{1}+\theta_{2}\right)}, \quad \frac{z_{1}}{z_{2}}=\frac{r_{1}}{r_{2}} \mathrm{e}^{\mathrm{i}\left(\theta_{1}-\theta_{2}\right)} .
+                            <br>\\]
+                            <br>这一关系式使得复数表示为指数形式时, 乘方和开方运算更为方便.
+                            <br>例 1 设 \(z=a+b \mathrm{i}\), 求复向量 \(z\) 按逆时针方向旋转 \(\frac{\pi}{2}\) 后所得的向 量.
+                            <br>解 因为 \(\arg \mathrm{i}=\frac{\pi}{2},|i|=1\), 而
+                            <br>\\[
+                            <br>\operatorname{Arg} z_{1} z=\operatorname{Arg} z_{1}+\operatorname{Arg} z_{2}, \quad\left|z_{1} \cdot z_{2}\right|=\left|z_{1}\right| \cdot\left|z_{2}\right|,
+                            <br>\\]</div>
+                        <img src="assets/images/conversions/markdown_ch_2.png" width="680px">
+                    </div>
+                </div>
+            </div>
+
+            <div id="conversation2" class="chat-messages" style="display: none;">
+
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <!-- <img class="image-message" src="assets/images/conversions/29_17.jpg" width="800px"> -->
+                    <img src="assets/images/conversions/markdown_en_1.png" width="600px">
+                </div>
+
+
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <div class="message user-message">
+                        <div class="message-text">将这幅图片转成markdown格式</div>
+                    </div>
+                </div>
+
+
+
+                <div class="bot-message-container">
+                    <div class="bot-icon"></div>
+                    <div class="message bot-message">
+                        <div class="message-text">where \(\alpha n\) (3) for \(A(x)\) was substituted into eqn (9). On the other hand, equilibrium statistical mechanics predicts that the probability of the system being in the ground state, once the interaction strength approaches zero, for large but finite N and V is:
+
+                            <br>\\[P_{0}=\frac{1}{1+\text{Exp}[-\beta\delta]}\\] (11)
+                            
+                            <br>where \(\delta\) is the energy spacing between the two states of the system. Equating (9) and (11), we obtain:
+                            
+                            <br> \\[\int_{0}^{\infty}\text{Exp}[-\delta \beta]\hat{f}(x)dx=\frac{\hat{Z}(\beta)}{(1+ \text{Exp}[-\beta\delta])}\\] (12)
+                            
+                            <br>where the bar above f and Z denotes a renormalization. Note that both f(x) and \(Z(\beta)\) increase with N and V in the same manner (in order for P\({}_{0}\) to be independent of N and V), and so if we are concerned about divergences in equation 12, we can normalize both f(x) and \(Z(\beta)\) by a common (temperature independent) factor to give \(\hat{f}(x)\) and \(\hat{Z}(\beta)\). It can be easily seen that \(\hat{f}(x)\), since it's independent of temperature and by the uniqueness of the Laplace transform, is the inverse Laplace transform of the function on the RHS of (12). However, there is no function whose inverse Laplace transform is the RHS of (12). This is because the inverse Laplace transform, if it existed would be the sum of the residues at the poles of the RHS of (12). The poles occur on the imaginary \(\beta\) axis at \(\beta\)=i(2n+1)\(\pi\)/\(\delta\) (n any integer) with a residue of \(\text{Exp}(\beta^{\prime}\hat{Z}(\beta^{\prime})/\delta\). The only way the sum over residues can converge is if Z(\(\beta\)) has a zero at each of these poles, or if Z(\(\beta^{\prime}\)) decreases with increasing n such that the sum is convergent, or if there is cancellation of terms due to some symmetry. There is no reason why any of these possibilities should be true in general and indeed they are not true (as can be easily checked) for the partition function of a gas of non-interacting particles, whether they are fermions, bosons or distinguishable classical particles. Ising lattice systems have a discrete spectrum and do no concern us here. Note also that we didn't explicitly use the fact that the interaction strength goes to zero, but we used it implicitly by assuming that the equilibrium temperature of the composite in that case is the same as the initial temperature before the interaction was turned on.
+                            
+                            <br>## 3 Discussion
+                            
+                            <br>Thus we have arrived at a contradiction by assuming that:
+                            
+                            <br>1. The environment is initially in equilibrium at inverse temperature \(\beta\).
+                            <br>2. The environment has a density matrix described by the Boltzmann form.
+                            <br>3. The interaction between system and environment is temperature independent.
+                            <br>4. The Schrodinger equation describes the evolution of the composite.
+                            <br>5. The final temperature of the environment is the same as the initial temperature because the interaction strength goes to zero. </div>
+                        <img src="assets/images/conversions/markdown_en_2.png" width="680px">
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="conversation3" class="chat-messages" style="display: none;">
+
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <img src="assets/images/conversions/ocr_ch_1.png" width="680px">
+                </div>
+
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <div class="message user-message">
+                        <div class="message-text">提取图中文字</div>
+                    </div>
+                </div>
+
+
+                <div class="bot-message-container">
+                    <div class="bot-icon"></div>
+                    <div class="message bot-message">
+                        <div class="message-text">图 1-8 嫦娥四号着陆器<br>
+                            2.3 科技人文融合创新的重要性<br>
+                            在科技人文融合创新中，自然科学与人文社会科学交叉、渗透、融合，能够打破传统学科划分与局限，从而获得更广阔的视野 和更深层次的理解与思考，促进创新的产生。<br>
+                            当今国际发展竞争日趋激烈，我国发展动力也正在转换，必须 把发展基点放在创新上，通过创新培育发展新动力，塑造更多发挥 先发优势的引领型发展。创新驱动发展的核心在于科技创新，科技 创新是提高社会生产力和综合国力的战略支撑。同时科技创新离不 开人文基础。“科技是车，人文是刹车和方向盘。”要妥善应对科技 应用中可能带来的环境污染、生态破坏、食品安全问题、信息安全 问题等负面效应，必须注重科技创新与人文精神的良性互动，推动 富有人文精神的科技创新。<br>
+                            案例<br>
+                            让科技拥有美<br>
+                            从工业革命以来技术创新演进的历史来看，无论是设计、生产、销售产品还是提供服务，其中的 艺术、社会元素越来越丰富和明显。科技本身可以制造出优秀的产品，但真正伟大的产品必须包含人文元素。<br>
+                            有一家著名的电子公司，其创始人十分重视科技与人文的结合，关注产品带给消费者的审美享受 和心理满足，即使在公司困难时期，也努力坚持这一理念，不断研究消费者的心理，通过改善外观设<br>
+                            第一章 科技人文融合创新概述 11</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="conversation4" class="chat-messages" style="display: none;">
+
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <img src="assets/images/conversions/ocr_en_1.png" width="500px">
+                </div>
+                
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <div class="message user-message">
+                        <div class="message-text">OCR this image</div>
+                    </div>
+                </div>
+
+
+
+                <div class="bot-message-container">
+                    <div class="bot-icon"></div>
+                    <div class="message bot-message">
+                        <div class="message-text">34. THE BOY WHO FELL INTO THE WATER<br> A boy was playing near the river close to his house one evening. Suddenly he slipped and fell into the river. A man was passing by. The boy shouted, “ Help!  Please pull me out! At first, the man just stood there and began telling the boy how foolish it was of him to play near the river. But the boy kept shouting and asking for help. Finally, the man threw along. stick towards the boy and pulled him out safely. The boy was sorry for being so careless and promised never again to play near the river but to play in a safer place. He thanked the man and went back home.  
+                            <br>Moral: Be wise and make the right decisions!  
+                            
+                            <br>35. THE JUMPING COMPETITION <br>In jumping competition, a king declared,  “ Whoever jumps the highest can marry my daughter. " A cricket, a frog, and a kangaroo were friends. All three decided to participate in this competition. They practised for many days. Finally, the King called these three friends to his palace to show their talent. First, the cricket tried to jump, but it could not jump to the right height. The frog thought that he could jump very high. But he too failed. Finally, the kangaroo jumped and reached the correct height. The King was happy and gave his daughter to marry the kangaroo.  
+                            <br>Moral: Hard work never fails!</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div id="conversation5" class="chat-messages" style="display: none;">
+ 
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <img src="assets/images/conversions/chart_1.png" width="400px">
+                </div> 
+ 
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <div class="message user-message">
+                        <div class="message-text">Convert this chart to python-dict, the keys should obtains (title, source, x_title, y_title, data).</div>
+                    </div>
+                </div>
+
+
+                <div class="bot-message-container">
+                    <div class="bot-icon"></div>
+                    <div class="message bot-message">
+                        <div class="message-text">The chart can be converted as:<br> 
+                            {<br>
+                                "title": "图：展厅/体验中心销售渠道占比接近50%",<br>
+                                "data": {<br>
+                                    "4S销售商": "34.20%",<br>
+                                    "展厅/体验中心": "48.50%",<br>
+                                    "售后服务中心": "17.30%"<br>
+                                }<br>
+                            }</div>
+                    </div>
+                </div>
+
+
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <img src="assets/images/conversions/chart_2.png" width="400px">
+                </div>
+
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <div class="message user-message">
+                        <div class="message-text">Convert this chart to python-dict, the keys should obtains (title, source, x_title, y_title, data).</div>
+                    </div>
+                </div>
+
+                <div class="bot-message-container">
+                    <div class="bot-icon"></div>
+                    <div class="message bot-message">
+                        <div class="message-text">The dict of the chart is:<br> 
+                            {<br>
+                                "title": "非金融企业和居民利息支出/收入（2021）",<br>
+                                "data": {<br>
+                                    "韩国": "21.1%",<br>
+                                    "法国": "20.8%",<br>
+                                    "中国": "20.0%",<br>
+                                    "日本": "15.5%",<br>
+                                    "英国": "13.6%",<br>
+                                    "美国": "13.4%",<br>
+                                    "德国": "11.4%",<br>
+                                    "印度": "9.7%"<br>
+                                }<br>
+                            }</div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div id="conversation6" class="chat-messages" style="display: none;">
+
+
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <img class="image-message" src="assets/images/conversions/qa_1.png">
+                </div>
+
+
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <div class="message user-message">
+                        <div class="message-text">这幅图奇怪在哪里？</div>
+                    </div>
+                </div>
+
+
+                <div class="bot-message-container">
+                    <div class="bot-icon"></div>
+                    <div class="message bot-message">
+                        <div class="message-text">这张图片的奇怪之处在于一个人站在一辆停在街上的黄色货车的后部，用熨斗熨烫一件蓝色的衣物。这是不寻常的，因为熨烫通常是在室内进行，比如在熨衣板上或在家庭或专业熨衣店。此外，熨烫衣物时，一个人站在一辆行驶中的车辆上是不安全的，因为这可能会导致事故或受伤。</div>
+                    </div>
+                </div>
+
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <img class="image-message" src="assets/images/conversions/qa_2.png">
+                </div>
+
+
+                <div class="user-message-container">
+                    <div class="user-icon"></div>
+                    <div class="message user-message">
+                        <div class="message-text">Describe this image in about 100 words.</div>
+                    </div>
+                </div>
+
+                <div class="bot-message-container">
+                    <div class="bot-icon"></div>
+                    <div class="message bot-message">
+                        <div class="message-text">The image features a bowl of soup placed on a dining table. The soup is a green and white mixture, which resembles a yin and yang symbol. The bowl is filled with soup, showcasing a creative and artistic presentation. A spoon can be seen on the table, likely for enjoying the soup. The soup's vibrant colors and unique design make it an appealing and visually pleasing meal.</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        <script>
+            const conversationButtons = document.querySelectorAll('.conversation-button');
+            const conversationContainers = document.querySelectorAll('.chat-messages');
+
+            let currentConversationIndex = 0;
+
+            function initialize() {
+                for (let i = 1; i < conversationContainers.length; i++) {
+                    conversationContainers[i].style.opacity = '0';
+                    conversationContainers[i].style.display = 'none';
+                }
+
+                conversationButtons[currentConversationIndex].classList.add('selected');
+            }
+
+            window.addEventListener('load', initialize);
+
+            function toggleConversation(index) {
+                conversationContainers[currentConversationIndex].style.opacity = '0';
+                conversationButtons[currentConversationIndex].classList.remove('selected');
+
+                conversationContainers[currentConversationIndex].addEventListener('transitionend', function transitionEndCallback() {
+                    conversationContainers[currentConversationIndex].removeEventListener('transitionend', transitionEndCallback);
+
+                    conversationContainers[currentConversationIndex].style.display = 'none';
+
+                    currentConversationIndex = index - 1;
+                    conversationContainers[currentConversationIndex].style.display = 'block';
+
+                    setTimeout(() => {
+                        conversationContainers[currentConversationIndex].style.opacity = '1';
+                        conversationButtons[currentConversationIndex].classList.add('selected');
+                    }, 0);
+                });
+            }
+        </script>
+
+        <br><br>
+    </div>
+    <hr class="divider" />
+
+
+    <div class="container" style="max-width: 80%;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Citation</h2>
+                <code>
+                    @article{dong2023dreamllm,<br>
+                    &nbsp; author = {Dong, Runpei and Han, Chunrui and Peng, Yuang and Qi, Zekun and Ge, Zheng and Yang, Jinrong and Zhao, Liang and Sun, Jianjian and Zhou, Hongyu and Wei, Haoran and Kong, Xiangwen and Zhang, Xiangyu and Ma, Kaisheng and Yi, Li},<br>
+                    &nbsp; title  = {Vary: Scaling up the Vision Vocabulary for Large Vision-Language Models},<br>
+                    &nbsp; journal = {arXiv preprint arXiv:2309.11499},<br>
+                    &nbsp; year   = {2023},<br>
+                }</code>
+            </div>
+        </div>
+    </div>
+    <script src="https://polyfill.io/v3/polyfill.js?features=IntersectionObserver"></script>
+    <script src="/assets/js/yall.js"></script>
+    <script>
+        yall(
+            {
+                observeChanges: true
+            }
+        );
+    </script>
+    <script>
+        const videoElement = document.querySelector(".video.lazy.d-sm-none.d-xs-block");
+        if (videoElement) {
+            videoElement.playbackRate = 1.5;
+        }
+    </script>
+    <script src="/assets/js/scripts.js"></script>
+
+    <footer class="footer">
+        <p style="text-align: center;">
+            The webpage template is borrowed from <a href="https://dreamfusion3d.github.io/">DreamFusion</a>. We thank
+            the authors for their codebase.
+        </p>
+    </footer>
+
+</body>
+
+</html>
